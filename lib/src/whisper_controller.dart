@@ -20,14 +20,14 @@ class WhisperController {
     required String audioPath,
     String lang = 'en',
     bool diarize = false,
+    bool translate = false,
+    bool withSegments = false,
+    bool splitWords = false,
   }) async {
     await initModel(model);
 
     final Whisper whisper = Whisper(model: model);
     final DateTime start = DateTime.now();
-    const bool translate = false;
-    const bool withSegments = false;
-    const bool splitWords = false;
 
     try {
       final WhisperTranscribeResponse transcription = await whisper.transcribe(
