@@ -23,8 +23,13 @@ class WhisperController {
     bool translate = false,
     bool withSegments = false,
     bool splitWords = false,
+    String? customModelPath,
   }) async {
-    await initModel(model);
+    if (customModelPath != null && customModelPath.isNotEmpty) {
+      _modelPath = customModelPath;
+    } else {
+      await initModel(model);
+    }
 
     final Whisper whisper = Whisper(model: model);
     final DateTime start = DateTime.now();
